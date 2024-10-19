@@ -1,0 +1,21 @@
+Operating System: Ubuntu 
+Memory: 4GiB (Recommended 8GiB)
+instance type  - t2. micro
+Volume: 20 gb
+log into root user (sudo -i)
+apt update
+apt install -y autoconf bc gawk dc build-essential gcc libc6 make wget unzip apache2 php libapache2-mod-php libgd-dev libmcrypt-dev make libssl-dev snmp libnet-snmp-perl gettext
+cd ~/ && wget https://github.com/NagiosEnterprises/nagioscore/archive/nagios-4.4.6.tar.gz
+tar -xf nagios-4.4.6.tar.gz && cd nagioscore-*/
+ ./configure --with-httpd-conf=/etc/apache2/sites-enabled && sudo make all
+make install-groups-users && sudo usermod -a -G nagios www-data
+make install && sudo make install-daemoninit && sudo make install-commandmode
+make install-config
+ make install-webconf && sudo a2enmod rewrite cgi
+systemctl restart apache2
+
+now setpassword user-     ( sudo htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin)
+NOW WE  install required plugins---   
+sudo apt install monitoring-plugins nagios-nrpe-plugin
+cd /usr/local/nagios/etc && mkdir -p /usr/local/nagios/etc/servers
+
