@@ -19,3 +19,6 @@ NOW WE  install required plugins---
 sudo apt install monitoring-plugins nagios-nrpe-plugin
 cd /usr/local/nagios/etc && mkdir -p /usr/local/nagios/etc/servers
 
+and lets do nagios-configaration:-
+
+vi /usr/local/nagios/etc/nagios.cfg     -------- to edit nagios.cfg ,and remove # in this line = cfg_dir=/usr/local/nagios/etc/servers
